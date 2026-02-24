@@ -1,0 +1,204 @@
+---
+import logoFull from "../assets/logo-full.png";
+---
+
+<header class="header" id="header">
+  <div class="header__inner container">
+    <a href="#" class="header__logo">
+      <img src={logoFull.src} alt="Neatlab" class="header__logo-img" />
+    </a>
+
+    <nav class="header__nav" id="nav">
+      <a href="#about" class="header__link">About</a>
+      <a href="#services" class="header__link">Services</a>
+      <a href="#why-us" class="header__link">Why Neatlab</a>
+      <a href="#contact" class="header__link">Contact</a>
+    </nav>
+
+    <a href="#contact" class="btn btn-primary header__cta">Get in Touch</a>
+
+    <button class="header__menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<style>
+  @import "../styles/global.css";
+
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    background: rgba(248, 250, 251, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid transparent;
+    transition: all var(--transition-base);
+  }
+
+  .header.scrolled {
+    background: rgba(248, 250, 251, 0.95);
+    border-bottom-color: var(--color-border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-xl);
+  }
+
+  .header__logo {
+    flex-shrink: 0;
+  }
+
+  .header__logo-img {
+    height: 32px;
+    width: auto;
+  }
+
+  .header__nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xl);
+  }
+
+  .header__link {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-text);
+    letter-spacing: 0.01em;
+    position: relative;
+    padding: var(--space-xs) 0;
+  }
+
+  .header__link::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-turquoise);
+    border-radius: var(--radius-full);
+    transition: width var(--transition-base);
+  }
+
+  .header__link:hover {
+    color: var(--color-navy);
+  }
+
+  .header__link:hover::after {
+    width: 100%;
+  }
+
+  .header__cta {
+    font-size: var(--font-size-sm);
+    padding: 0.6rem 1.5rem;
+  }
+
+  .header__menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-sm);
+  }
+
+  .header__menu-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--color-navy);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-base);
+  }
+
+  .header__menu-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .header__menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .header__menu-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  @media (max-width: 768px) {
+    .header__nav {
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding-top: var(--space-3xl);
+      gap: var(--space-xl);
+      background: var(--color-bg);
+      transform: translateX(100%);
+      transition: transform var(--transition-slow);
+    }
+
+    .header__nav.open {
+      transform: translateX(0);
+    }
+
+    .header__nav .header__link {
+      font-size: var(--font-size-xl);
+    }
+
+    .header__cta {
+      display: none;
+    }
+
+    .header__menu-toggle {
+      display: flex;
+    }
+  }
+</style>
+
+<script>
+  function initHeader() {
+    const header = document.getElementById("header");
+    const toggle = document.getElementById("menu-toggle");
+    const nav = document.getElementById("nav");
+
+    // Scroll effect
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) {
+        header?.classList.add("scrolled");
+      } else {
+        header?.classList.remove("scrolled");
+      }
+    });
+
+    // Mobile menu toggle
+    toggle?.addEventListener("click", () => {
+      toggle.classList.toggle("active");
+      nav?.classList.toggle("open");
+    });
+
+    // Close mobile menu on link click
+    nav?.querySelectorAll(".header__link").forEach((link) => {
+      link.addEventListener("click", () => {
+        toggle?.classList.remove("active");
+        nav.classList.remove("open");
+      });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", initHeader);
+  document.addEventListener("astro:after-swap", initHeader);
+</script>
