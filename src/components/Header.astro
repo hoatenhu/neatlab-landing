@@ -1,11 +1,16 @@
 ---
-import logoFull from "../assets/logo-full.png";
+import logoIconTransparent from "../assets/logo-icon-transparent.png";
 ---
 
 <header class="header" id="header">
   <div class="header__inner container">
     <a href="#" class="header__logo">
-      <img src={logoFull.src} alt="Neatlab" class="header__logo-img" />
+      <img
+        src={logoIconTransparent.src}
+        alt="Neatlab Icon"
+        class="header__logo-img"
+      />
+      <span class="header__logo-text">Neatlab</span>
     </a>
 
     <nav class="header__nav" id="nav">
@@ -17,7 +22,11 @@ import logoFull from "../assets/logo-full.png";
 
     <a href="#contact" class="btn btn-primary header__cta">Get in Touch</a>
 
-    <button class="header__menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+    <button
+      class="header__menu-toggle"
+      id="menu-toggle"
+      aria-label="Toggle menu"
+    >
       <span></span>
       <span></span>
       <span></span>
@@ -58,12 +67,23 @@ import logoFull from "../assets/logo-full.png";
   }
 
   .header__logo {
+    display: flex;
+    align-items: center;
+    gap: 2px;
     flex-shrink: 0;
+    text-decoration: none;
   }
 
   .header__logo-img {
-    height: 32px;
+    height: 36px;
     width: auto;
+  }
+
+  .header__logo-text {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--color-navy);
+    letter-spacing: -0.02em;
   }
 
   .header__nav {
