@@ -2,24 +2,24 @@
 const services = [
   {
     icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
-    title: "Software Products",
+    title: "AI Automation Audit",
     description:
-      "We design, build, and scale our own software products — from concept to launch. Our products solve real-world problems with elegant, user-centric solutions.",
-    features: ["Product Strategy", "UI/UX Design", "Full-Stack Development", "Continuous Improvement"],
+      "Identify the best workflows to automate first based on business impact, implementation effort, and measurable ROI.",
+    features: ["Workflow Discovery", "Pain Point Analysis", "ROI Prioritization", "Automation Roadmap"],
   },
   {
     icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
-    title: "Custom Development",
+    title: "AI Workflow Implementation",
     description:
-      "Turn your ideas into reality with our custom software development. We collaborate closely with you to deliver tailor-made solutions that fit your exact needs.",
-    features: ["Web Applications", "Mobile Apps", "API & Backend", "Cloud Solutions"],
+      "Design, build, and launch AI-powered workflows integrated with your existing tools, data sources, and team processes.",
+    features: ["Workflow Design", "AI Prompt Logic", "Tool Integration", "Enablement & Handover"],
   },
   {
     icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
-    title: "IT Outsourcing",
+    title: "Ongoing Optimization",
     description:
-      "Extend your team with our skilled engineers. We provide dedicated developers and project-based teams to help you scale efficiently and deliver faster.",
-    features: ["Dedicated Teams", "Staff Augmentation", "Project-Based", "Flexible Engagement"],
+      "Continuously improve quality and performance after go-live to maintain ROI, reliability, and adoption across teams.",
+    features: ["Performance Monitoring", "Prompt Tuning", "Expansion Backlog", "Monthly Optimization Review"],
   },
 ];
 ---
@@ -27,16 +27,16 @@ const services = [
 <section class="services section" id="services">
   <div class="container">
     <div class="section-header animate-on-scroll">
-      <span class="section-label">What We Do</span>
-      <h2 class="section-title">Services built around your success</h2>
+      <span class="section-label">Service Offers</span>
+      <h2 class="section-title">Three offers to launch and scale AI automation</h2>
       <p class="section-subtitle">
-        Whether you need a product partner, a development team, or technical expertise — 
-        we have the right solution for you.
+        Start with the right automation opportunity, implement high-impact workflows,
+        then optimize continuously for stronger business outcomes.
       </p>
     </div>
 
     <div class="services__grid stagger-children">
-      {services.map((service, index) => (
+      {services.map((service) => (
         <div class="services__card animate-on-scroll">
           <div class="services__card-icon" set:html={service.icon} />
           <h3 class="services__card-title">{service.title}</h3>

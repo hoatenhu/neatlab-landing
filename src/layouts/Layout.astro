@@ -2,12 +2,25 @@
 interface Props {
   title?: string;
   description?: string;
+  canonicalPath?: string;
+  ogImage?: string;
+  jsonLd?: object | object[];
 }
 
 const {
-  title = "Neatlab — Building Smart Software Solutions",
-  description = "Neatlab is a technology company specializing in software product development and IT outsourcing services. We build scalable, high-quality digital solutions.",
+  title = "Neatlab | AI Automation Services for Business Operations",
+  description = "Neatlab helps businesses automate repetitive workflows with AI to reduce operating costs, improve team productivity, and scale operations faster.",
+  canonicalPath = "/",
+  ogImage = "/favicon.png",
+  jsonLd,
 } = Astro.props;
+
+const siteUrl = Astro.site ?? new URL("https://neatlab.tech");
+const canonicalUrl = new URL(canonicalPath, siteUrl).toString();
+const ogImageUrl = new URL(ogImage, siteUrl).toString();
+const structuredData = jsonLd
+  ? JSON.stringify(Array.isArray(jsonLd) ? jsonLd : [jsonLd])
+  : null;
 ---
 
 <!doctype html>
@@ -16,16 +29,31 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="canonical" href={canonicalUrl} />
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
     <meta name="author" content="Neatlab" />
+    <meta name="theme-color" content="#0f1d2d" />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="Neatlab" />
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
     <meta name="generator" content={Astro.generator} />
+    {structuredData && (
+      <script type="application/ld+json" set:html={structuredData} />
+    )}
     <title>{title}</title>
   </head>
   <body>

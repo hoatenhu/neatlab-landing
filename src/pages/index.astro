@@ -8,9 +8,70 @@ import WhyUs from "../components/WhyUs.astro";
 import Contact from "../components/Contact.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
+
+const pageTitle = "Neatlab | AI Automation Services for SMEs and Operations Teams";
+const pageDescription =
+  "Neatlab helps businesses automate repetitive workflows with AI through three offers: AI Automation Audit, AI Workflow Implementation, and Ongoing Optimization.";
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Neatlab",
+    url: "https://neatlab.tech/",
+    logo: "https://neatlab.tech/favicon.png",
+    email: "admin@neatlab.tech",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Ho Chi Minh City",
+      addressCountry: "VN",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "AI Automation Services",
+    provider: {
+      "@type": "Organization",
+      name: "Neatlab",
+    },
+    areaServed: "Global",
+    audience: {
+      "@type": "BusinessAudience",
+      audienceType: "SMEs and operations teams",
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Neatlab AI Automation Service Offers",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "AI Automation Audit",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "AI Workflow Implementation",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Ongoing Optimization",
+          },
+        },
+      ],
+    },
+  },
+];
 ---
 
-<Layout>
+<Layout title={pageTitle} description={pageDescription} canonicalPath="/" jsonLd={jsonLd}>
   <Header />
   <main>
     <Hero />
